@@ -42,6 +42,7 @@ from ultralytics.nn.modules import (
     Conv2,
     ConvTranspose,
     Detect,
+    DinoV2Patches,
     DWConv,
     DWConvTranspose2d,
     Focus,
@@ -997,6 +998,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             PSA,
             SCDown,
             C2fCIB,
+            DinoV2Patches,
         }:
             c1, c2 = ch[f], args[0]
             if c2 != nc:  # if c2 not equal to number of classes (i.e. for Classify() output)
@@ -1060,7 +1062,10 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             c2 = ch[f[-1]]
         else:
             c2 = ch[f]
-
+        # print("agrs passed are ------------------")
+        # # print class name
+        # print(args)
+        # print("------------------")
         m_ = nn.Sequential(*(m(*args) for _ in range(n))) if n > 1 else m(*args)  # module
         t = str(m)[8:-2].replace("__main__.", "")  # module type
         m_.np = sum(x.numel() for x in m_.parameters())  # number params

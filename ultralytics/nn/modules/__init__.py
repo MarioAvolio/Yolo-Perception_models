@@ -46,6 +46,7 @@ from .block import (
     CBFuse,
     CBLinear,
     ContrastiveHead,
+    DinoV2Patches,
     GhostBottleneck,
     HGBlock,
     HGStem,
@@ -156,4 +157,5 @@ __all__ = (
     "C2fCIB",
     "Attention",
     "PSA",
+    "DinoV2Patches",
 )
