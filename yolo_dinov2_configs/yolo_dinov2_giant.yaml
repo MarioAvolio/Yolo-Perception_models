@@ -1,19 +1,19 @@
 # yolov8-custom.yaml
 
 # Parameters
-nc: 20 # Number of classes for Pascal VOC
+nc: 80 # Number of classes for Pascal VOC
 
 # Model scaling parameters
 scales:
   # [depth, width, max_channels]
-  n: [1, 1, 1024] # Adjusted to match backbone output
+  n: [1, 1, 1536] # Adjusted to match backbone output
 
 # Backbone configuration
 backbone:
   # [from, repeats, module, args]
   - [-1, 1, DinoV2Patches, [1536, 'giant']] # Outputs 1536 channels
 
-  # Other backnobes avaulable
+  # Other backbones available
   # - [-1, 1, DinoV2Patches, [384, 'small']] # Outputs 384 channels
   # - [-1, 1, DinoV2Patches, [768, 'base']] # Outputs 768 channels
   # - [-1, 1, DinoV2Patches, [1024, 'large']] # Outputs 1024 channels
