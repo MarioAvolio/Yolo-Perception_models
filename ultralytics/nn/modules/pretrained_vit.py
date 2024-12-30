@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch.hub import load
 
-from aim.v2.utils import load_pretrained
+# from aim.v2.utils import load_pretrained
 
 dino_backbones = {
     "small": {"name": "dinov2_vits14_reg", "embedding_size": 384, "patch_size": 14},
