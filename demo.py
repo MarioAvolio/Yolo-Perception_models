@@ -11,7 +11,16 @@ if __name__ == "__main__":
     # this new model can work on much smaller
     # dataset then the original models
 
-    model = YOLO("yolo_dinov2_configs/yolo_dinov2_small.yaml")
+    model = YOLO("yolo_dinov2_configs/apple_aimv2_large.yaml")
+
+    model.train(
+        data=r"C:\Users\pthakur\OneDrive - Stryker\Documents\code\datasets\data\data.yaml",
+        epochs=500,
+        imgsz=640,
+        batch=8,
+    )
+
+    #
 
     # Train test and predict as you will do for any other yolo model
     # in the repository, Please refer to the ultralytics

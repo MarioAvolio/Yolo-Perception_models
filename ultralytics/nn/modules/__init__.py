@@ -17,7 +17,7 @@ Example:
     ```
 """
 
-from .pretrained_vit import DinoV2Patches
+from .pretrained_vit import DinoV2Patches, AppleAIM
 from .block import (
     C1,
     C2,
@@ -158,4 +158,5 @@ __all__ = (
     "Attention",
     "PSA",
     "DinoV2Patches",
+    "AppleAIM",
 )
