@@ -52,14 +52,6 @@ __all__ = (
 )
 
 
-dino_backbones = {
-    "small": {"name": "dinov2_vits14_reg", "embedding_size": 384, "patch_size": 14},
-    "base": {"name": "dinov2_vitb14_reg", "embedding_size": 768, "patch_size": 14},
-    "large": {"name": "dinov2_vitl14_reg", "embedding_size": 1024, "patch_size": 14},
-    "giant": {"name": "dinov2_vitg14_reg", "embedding_size": 1536, "patch_size": 14},
-}
-
-
 class DFL(nn.Module):
     """
     Integral module of Distribution Focal Loss (DFL).

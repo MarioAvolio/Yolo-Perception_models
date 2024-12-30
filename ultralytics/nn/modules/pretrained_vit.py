@@ -1,9 +1,13 @@
-from ultralytics.nn.modules.block import dino_backbones
-
-
 import torch
 import torch.nn as nn
 from torch.hub import load
+
+dino_backbones = {
+    "small": {"name": "dinov2_vits14_reg", "embedding_size": 384, "patch_size": 14},
+    "base": {"name": "dinov2_vitb14_reg", "embedding_size": 768, "patch_size": 14},
+    "large": {"name": "dinov2_vitl14_reg", "embedding_size": 1024, "patch_size": 14},
+    "giant": {"name": "dinov2_vitg14_reg", "embedding_size": 1536, "patch_size": 14},
+}
 
 
 class DinoV2Patches(nn.Module):
