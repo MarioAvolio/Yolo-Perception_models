@@ -6,7 +6,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "True"
 
 
 if __name__ == "__main__":
-    # Create a new YOLO model from scratch, No pretrained weights are availabe for now
+    # Create a new YOLO model from scratch, No pretrained weights are available for now
     # but you can quickly train the model on your custom dataset
     # this new model can work on much smaller
     # dataset then the original models

@@ -17,6 +17,7 @@ Example:
     ```
 """
 
+from .pretrained_vit import DinoV2Patches
 from .block import (
     C1,
     C2,
@@ -46,7 +47,6 @@ from .block import (
     CBFuse,
     CBLinear,
     ContrastiveHead,
-    DinoV2Patches,
     GhostBottleneck,
     HGBlock,
     HGStem,

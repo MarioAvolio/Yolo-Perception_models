@@ -4,7 +4,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.hub import load
 
 from ultralytics.utils.torch_utils import fuse_conv_and_bn
 
@@ -50,7 +49,6 @@ __all__ = (
     "Attention",
     "PSA",
     "SCDown",
-    "DinoV2Patches",
 )
 
 
@@ -60,41 +58,6 @@ dino_backbones = {
     "large": {"name": "dinov2_vitl14_reg", "embedding_size": 1024, "patch_size": 14},
     "giant": {"name": "dinov2_vitg14_reg", "embedding_size": 1536, "patch_size": 14},
 }
-
-
-class DinoV2Patches(nn.Module):
-    def __init__(self, in_chanels=3, out_channels=768, size="base"):
-        from torchvision import transforms
-
-        super(DinoV2Patches, self).__init__()
-        self.size = size
-        self.backbone = load("facebookresearch/dinov2", dino_backbones[self.size]["name"], pretrained=True)
-        self.backbone.eval()
-        IMAGENET_MEAN = (0.485, 0.456, 0.406)
-        IMAGENET_STD = (0.229, 0.224, 0.225)
-        self.out_channels = out_channels
-        self.inet_norm = transforms.Normalize(mean=IMAGENET_MEAN, std=IMAGENET_STD)
-
-    def transform(self, x):
-        # resize height and width to nearest multiple of 14
-        h, w = x.shape[2], x.shape[3]
-        h = h - h % 14
-        w = w - w % 14
-        x = F.interpolate(x, size=(h, w), mode="bicubic", antialias=True)
-        x = self.inet_norm(x)
-        return x
-
-    def forward(self, x):
-        with torch.no_grad():
-            x = self.transform(x)
-            batch_size = x.shape[0]
-            mask_dim = (x.shape[2] / 14, x.shape[3] / 14)
-            with torch.no_grad():
-                x = self.backbone.forward_features(x)
-                x = x["x_norm_patchtokens"]
-                x = x.permute(0, 2, 1)
-                x = x.reshape(batch_size, self.out_channels, int(mask_dim[0]), int(mask_dim[1]))
-            return x
 
 
 class DFL(nn.Module):
